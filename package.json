@@ -1,0 +1,26 @@
+{
+  "name": "prueba-generacino-reporte-conciliacion",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "esModuleInterop": true
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "exceljs": "^4.3.0",
+    "expect": "^28.1.3",
+    "expect.equal": "^0.0.2",
+    "js-excel-template": "^3.0.1",
+    "write-excel-file": "^1.4.9",
+    "xlsx": "^0.18.5",
+    "xlsx-js-style": "^1.2.0",
+    "xlsx-style": "^0.8.13",
+    "xlsx-template": "^1.3.2"
+  }
+}
