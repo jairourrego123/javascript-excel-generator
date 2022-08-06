@@ -426,10 +426,10 @@ async function  GenerarReporte() {
           firstSheet: 0, activeTab: 1, visibility: 'visible'
         }
       ]
-      const sheet = workbook.addWorksheet('My Sheet', {properties:{tabColor:{argb:'0000000'}}}); //  agregar hoja de trabajo 
-      const worksheet = workbook.getWorksheet('My Sheet')
+      const sheet = workbook.addWorksheet('Informe', {properties:{tabColor:{argb:'008A3E'}}}); //  agregar hoja de trabajo 
+      const worksheet = workbook.getWorksheet('Informe')
 
-      worksheet.mergeCells('A1', 'AS1'); // CINBINAR CELDAS DE CELDA A CELDA
+      worksheet.mergeCells('A1', 'AU'); // CINBINAR CELDAS DE CELDA A CELDA
       worksheet.mergeCells('A2', 'D2'); // CINBINAR CELDAS DE CELDA A CELDA
       worksheet.mergeCells('E2', 'I2'); // CINBINAR CELDAS DE CELDA A CELDA
       worksheet.mergeCells('J2', 'N2'); // CINBINAR CELDAS DE CELDA A CELDA
@@ -462,7 +462,7 @@ async function  GenerarReporte() {
  
 
    
-      worksheet.getCell('A1').value = 'REGISTRO DE AUDIENCIAS DE CONCILIACIÓN';
+ 
       worksheet.getCell('A2').value = 'DATOS DE SOLICITUD DE AUDIENCIA';
       worksheet.getCell('E2').value = 'DATOS DE SOLICITUD DE AUDIENCIA';
       worksheet.getCell('J2').value = 'DATOS CONVOCADO';
@@ -477,54 +477,62 @@ async function  GenerarReporte() {
       worksheet.getCell('AK2').value = 'EVALUACIÓN DEL MECANISMO';
       worksheet.getCell('AM2').value = '¿POR CUÁL MEDIO CONOCIÓ EL CENTRO DE CONCILIACION? ';
 
-      //  Style 
+      //  Style }
+      const fontEncabezado = {name: 'FrankRuehl', family: 4, size: 25,color:{argb:'008A3E'} }; // 
       const font = {name: 'Calibri', family: 4, size: 10,color:{argb:'FFFFFF'} }; // 
-      const backgroundRow2 = {type: 'pattern',pattern:'solid',fgColor:{argb:'A0A4FA'},bgColor:{argb:'A0A4FA'}};
-      const backgroundRow3 = {type: 'pattern',pattern:'solid',fgColor:{argb:'7ABF96'},bgColor:{argb:'7ABF96'}};
+      const fontFilasDatos = {name: 'Calibri', family: 4, size: 8,color:{argb:'000000'} }; // 
+      const fontTitulos = {name: 'Calibri', family: 4, size: 10,color:{argb:'FFFFFF'} }; // 
+      const backgroundRow2 = {type: 'pattern',pattern:'solid',fgColor:{argb:'215967'},bgColor:{argb:'215967'}};
+      const backgroundRow3 = {type: 'pattern',pattern:'solid',fgColor:{argb:'008A3E'},bgColor:{argb:'008A3E'}};
 
       const border  = {top: {style:'thin'},left: {style:'thin'},bottom: {style:'thin'},right: {style:'thin'}};
    
       worksheet.getRows(1).font=font
+      
            // Ajuste Filas
 
-      worksheet.getRow(1).alignment = { vertical: 'middle', horizontal: 'center' };
+      worksheet.getRow(1).alignment = alignment = { vertical: 'top', horizontal: 'left' };;
+      worksheet.getRow(1).font= fontEncabezado 
+      worksheet.getRow(1).height= 50;
       worksheet.getRow(2).alignment = { vertical: 'middle', horizontal: 'center' };
       worksheet.getRow(2).fill= backgroundRow2
        
       worksheet.getRow(2).font= font 
-      worksheet.getRow(2).height= 30;
+      worksheet.getRow(2).height= 25;
+      
+
       
 
       
       
 
         worksheet.columns = [
-                { header: 'FECHA SOLICITUD', key: 'Fecha_registro',width:20},
-                { header: 'No. TRAMITE', key: 'Numero_caso', width: 32},// { header: 'No. De Tramite', key: 'numero_solicitud', width: 32,style: { font: { color: { argb: 'FF00FF00' }} }},
-                { header: 'MATERIA', key: 'Area_Id', width: 40 },
-                { header: 'ASUNTO', key: 'Tema', width: 40 },
-                { header: 'CONVOCANTE', key: 'Convocante_nombre', width: 40 },
-                { header: 'NO DE DOCUMENTO', key: 'Convocante_identificacion', width: 40 },
-                { header: 'GENERO', key: 'Convocante_genero', width: 40 },
-                { header: 'ESTRATO', key: 'Convocante_estrato', width: 40 },
-                { header: 'LOCALIDAD', key: 'Convocante_localidad', width: 40 },
-                { header: 'CONVOCADO', key: 'Convocado_nombre', width: 40 },
-                { header: 'NO DE DOCUMENTO', key: 'Convocado_identificacion', width: 40 },
-                { header: 'GENERO', key: 'Convocado_genero', width: 40 },
-                { header: 'ESTRATO', key: 'Convocado_estrato', width: 40 },
-                { header: 'LOCALIDAD', key: 'Convocado_localidad', width: 40 },
-                { header: 'MES', key: 'Fecha_citacion', width: 40 },
-                { header: 'FECHA  DE AUDIENCIA', key: 'Fecha_citacion', width: 40 },
-                { header: 'ESTADO DEL TRAMITE', key: 'Estado_tramite', width: 40 },
-                { header: 'NUEVA FECHA', key: 'nueva_fecha', width: 40 },
-                { header: 'RESULTADO DEL TRÁMITE ', key: 'Tipo_resultado_Id', width: 40 },
-                { header: 'No. RESULTAD', key: 'numero_resultado', width: 40 },
-                { header: 'CUMPLIO', key: 'cumplio', width: 40 },
-                { header: 'POBLACIÓN CICLO VITAL', key: 'Convocado_poblacion', width: 40 },
-                { header: 'CONCILIADOR', key: 'Conciliador', width: 40 },
-                { header: 'RUG', key: 'rug', width: 40 },
-                { header: 'COMISARIA', key: 'comisaria', width: 40 },
-                { header: 'REMITE', key: 'remite', width: 40 },
+                { header: 'FECHA SOLICITUD', key: 'Fecha_registro',width:15.64},
+                { header: 'No. TRAMITE', key: 'Numero_caso', width: 12.3},// { header: 'No. De Tramite', key: 'numero_solicitud', width: 32,style: { font: { color: { argb: 'FF00FF00' }} }},
+                { header: 'MATERIA', key: 'Area_Id', width: 13.06 },
+                { header: 'ASUNTO', key: 'Tema', width: 14 },
+                { header: 'CONVOCANTE', key: 'Convocante_nombre', width: 22.6 },
+                { header: 'NO DE DOCUMENTO', key: 'Convocante_identificacion', width: 16.9 },
+                { header: 'GENERO', key: 'Convocante_genero', width: 10.1 },
+                { header: 'ESTRATO', key: 'Convocante_estrato', width: 10.9 },
+                { header: 'LOCALIDAD', key: 'Convocante_localidad', width: 10 },
+                { header: 'CONVOCADO', key: 'Convocado_nombre', width: 22.6 },
+                { header: 'NO DE DOCUMENTO', key: 'Convocado_identificacion', width: 16.9 },
+                { header: 'GENERO', key: 'Convocado_genero', width: 10.1 },
+                { header: 'ESTRATO', key: 'Convocado_estrato', width: 10.9 },
+                { header: 'LOCALIDAD', key: 'Convocado_localidad', width: 10 },
+                { header: 'MODALIDAD', key: 'modalidad', width: 15 },
+                { header: 'FECHA  DE AUDIENCIA', key: 'Fecha_citacion', width: 19.2 },
+                { header: 'ESTADO DEL TRAMITE', key: 'Estado_tramite', width: 19 },
+                { header: 'NUEVA FECHA', key: 'nueva_fecha', width: 15 },
+                { header: 'RESULTADO DEL TRÁMITE ', key: 'Tipo_resultado_Id', width: 21.4 },
+                { header: 'No. RESULTAD', key: 'numero_resultado', width: 18 },
+                { header: 'CUMPLIO', key: 'cumplio', width: 11.7 },
+                { header: 'POBLACIÓN CICLO VITAL', key: 'Convocado_poblacion', width: 19.5 },
+                { header: 'CONCILIADOR', key: 'Conciliador', width: 22.6 },
+                { header: 'RUG', key: 'rug', width: 15 },
+                { header: 'COMISARIA', key: 'comisaria', width: 15 },
+                { header: 'REMITE', key: 'remite', width: 15 },
                 // { header: 'Servicio recibido por parte del conciliador', key: 'pregunta1', width: 40 },
                 // { header: 'Puntualidad', key: 'pregunta2', width: 40 },
                 // { header: 'Dominio del tema', key: 'pregunta3', width: 40 },
@@ -550,34 +558,66 @@ async function  GenerarReporte() {
               
               for (const iterator of info[0]) {
 
-                worksheet.columns = worksheet.columns.concat({ header: iterator.Pregunta, key: 'Pregunta_Id_'+iterator.Id, width: 40 })
+                worksheet.columns = worksheet.columns.concat({ header: iterator.Pregunta, key: 'Pregunta_Id_'+iterator.Id, width: 35 })
               }
 
               for (const iterator of info[1]) {
 
-                worksheet.columns = worksheet.columns.concat({ header: iterator.Nombre, key: 'Medio_conocimiento_'+iterator.Nombre, width: 40 })
+                worksheet.columns = worksheet.columns.concat({ header: iterator.Nombre, key: 'Medio_conocimiento_'+iterator.Nombre, width: 12 })
               }
             
             const rows = {}
             for (const iterator of worksheet.columns) {
                 rows[iterator.key]=iterator.header
             }
-
+            
             worksheet.addRow(rows, 'n');
+            worksheet.getCell('C1').value = '                             REGISTRO DE AUDIENCIAS DE CONCILIACIÓN';
 
             worksheet.getRow(3).alignment = { vertical: 'middle', horizontal: 'center' };
-            worksheet.getRow(3).height= 40;
+            worksheet.getRow(3).height= 26;
             worksheet.getRow(3).fill= backgroundRow3
             worksheet.getRow(3).border=border
+            worksheet.getRow(3).font=fontTitulos
+            // FILTROS
+            
+            //worksheet.autoFilter = 'A3:W3'
+          
 
-           
+           // Imagen
+
+           const logotipo_ugc = workbook.addImage({
+            filename: 'logotipo_ugc.png',
+            extension: 'jpeg',
+          });
+
+          worksheet.addImage(logotipo_ugc, {
+            tl: { col: 0.2, row: 0.1 },
+            br: { col: 1.6, row: 1.35 }
+          });
 
             datos=info[2]
             for (const iterator of datos) {
-                worksheet.addRow(iterator, 'n').border=border; 
+                let fila=worksheet.addRow(iterator, 'n')
+                fila.border=border
+                fila.font=fontFilasDatos
+                fila.alignment = { vertical: 'middle', horizontal: 'center' }
             }
-             
-
+           
+            // formato condicional
+            
+            console.log("A3:AL"+ worksheet.lastRow.number)
+            worksheet.addConditionalFormatting({
+                ref: "A3:AL"+ worksheet.lastRow.number ,
+                rules: [
+                  {
+                    type: 'containsText',
+                    operator: 'containsBlanks',
+                    text:"",
+                    style: {fill: {type: 'pattern', pattern: 'solid', bgColor: {argb: 'B7DEE8'}}},
+                  }
+                ]
+              })
     //   const idCol = worksheet.getColumn('id');
     //   const nameCol = worksheet.getColumn('B');
     //   const dobCol = worksheet.getColumn(3);
